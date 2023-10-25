@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 import os
-from weather_forecast import CityData
+from utils.weather_forecast import CityData
 from flask import Flask, Response, json
 from flask_cors import CORS
 
@@ -31,7 +31,7 @@ def getTemperatureCity(city_name):
         response.headers["Content-Type"] = "application/json; charset=utf-8"
         return response
     except Exception as e:
-        error_message = {"error": str(e)}
+        error_message = {"error": f"Name {city_name} is invalid."}
         response = Response(json.dumps(error_message).encode('utf-8'), status=500)
         response.headers["Content-Type"] = "application/json; charset=utf-8"
         return response
